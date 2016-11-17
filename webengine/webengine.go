@@ -1,14 +1,14 @@
-/*Package client -
+/*Package webengine -
 tried to use https://github.com/sourcegraph/go-webkit2
 but couldn't get it to work
 
 trying to edit it a little bit
 */
-package client
+package webengine
 
 /*
 #cgo pkg-config: webkit2gtk-4.0
-#include "./client.c"
+#include "./webengine.c"
 */
 import "C"
 
@@ -72,6 +72,13 @@ func (w *WebView) Show() {
 	C.gtk_main()
 }
 
+// RunJavascript executes javascript in the window
+// TODO: figure out how to add a callback
+func (w *WebView) RunJavascript(script string) {
+
+}
+
+// i don't know what this does
 func initGtk() {
 	C.init_gtk(C.int(0))
 }
