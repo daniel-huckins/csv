@@ -66,17 +66,25 @@ func (w *WebView) LoadHTMLFile(file *os.File) error {
 	return nil
 }
 
+// LoadHTML loads html from a string
+// TODO: load a template?
+func (w *WebView) LoadHTML(html string) error {
+	content := (*C.gchar)(C.CString(html))
+	C.webkit_web_view_load_html(w.view, content, nil)
+	return nil
+}
+
 // Show makes the window appear
 func (w *WebView) Show() {
 	C.showWindow(w.view, w.win)
 	C.gtk_main()
 }
 
-// RunJavascript executes javascript in the window
+// RunJavascriptString executes javascript in the window
 // TODO: figure out how to add a callback
-func (w *WebView) RunJavascript(script string) {
-
-}
+// func (w *WebView) RunJavascriptString(script string) {
+//
+// }
 
 // i don't know what this does
 func initGtk() {

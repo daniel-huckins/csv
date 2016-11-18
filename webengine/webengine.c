@@ -1,4 +1,5 @@
 #include <gtk/gtk.h>
+#include <stdio.h>
 #include <webkit2/webkit2.h>
 
 static gboolean closeWebViewCb(WebKitWebView *webView, GtkWidget *window) {
@@ -32,3 +33,6 @@ static void showWindow(WebKitWebView *webView, GtkWidget *widget) {
 }
 
 static void init_gtk(int argc) { gtk_init(&argc, NULL); }
+
+static void web_view_javascript_finished(GObject *object, GAsyncResult *result,
+                                         gpointer user_data) {}
