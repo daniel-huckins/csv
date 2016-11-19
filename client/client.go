@@ -11,11 +11,11 @@ import (
 
 var (
 	log          = csv.Logger()
-	manifestPath = fromPkgPath("client/app/build/asset-manifest.json")
+	manifestPath = fromPkgPath("app/build/asset-manifest.json")
 )
 
 func fromPkgPath(ext string) string {
-	return fmt.Sprintf("%s/src/github.com/daniel-huckins/csv/%s", os.Getenv("GOPATH"), ext)
+	return fmt.Sprintf("%s/src/github.com/daniel-huckins/csv/client/%s", os.Getenv("GOPATH"), ext)
 }
 
 // the assetManifest tells us where the built files are relative to "app/build"
@@ -46,6 +46,7 @@ func readManifest(fpath string) (*assetManifest, error) {
 }
 
 func readBytes2String(fpath string) (string, error) {
+	fpath = fromPkgPath(fmt.Sprintf("app/build/%s", fpath))
 	data, err := ioutil.ReadFile(fpath)
 	if err != nil {
 		log.WithError(err).Errorf("error reading file '%s'", fpath)
@@ -55,7 +56,6 @@ func readBytes2String(fpath string) (string, error) {
 }
 
 // HTML gets the complete html/js/css file to render
-// FIXME:
 func HTML() (string, error) {
 	manifest, err := readManifest(manifestPath)
 	if err != nil {
