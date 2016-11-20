@@ -1,6 +1,0 @@
-[submodule "client/csv-webapp"]
-	path = client/csv-webapp
-	url = https://github.com/daniel-huckins/csv-webapp
-[submodule "client/app"]
-	path = client/app
-	url = https://github.com/daniel-huckins/csv-webapp
